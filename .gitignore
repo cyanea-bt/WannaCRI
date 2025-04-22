@@ -1,6 +1,8 @@
 .eggs/
-build/
-dist/
+/.venv/
+/build/
+/dist/
+/nuitka/
 *.egg-info
 *.usm
 *.dat
