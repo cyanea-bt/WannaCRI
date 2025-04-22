@@ -1,1 +1,3 @@
-python -m nuitka --mode=app --lto=yes --disable-cache=all --python-flag=nosite,-OO --plugin-enable=anti-bloat,multiprocessing --follow-imports --remove-output --mingw64 --deployment --assume-yes-for-downloads --product-name="WannaCRI" --file-description="Criware media formats library" --company-name="donmai-me" --product-version=0.3.1 --output-dir=nuitka wannacri
+pip install -r .\requirements.txt && pip install .
+
+python -m nuitka --mode=app --lto=yes --disable-cache=all --python-flag=nosite,-OO --plugin-enable=anti-bloat,multiprocessing --follow-imports --remove-output --mingw64 --assume-yes-for-downloads --product-name="WannaCRI" --file-description="Criware media formats library" --company-name="donmai-me" --product-version=0.3.1 --output-dir=nuitka --main=wannacri
