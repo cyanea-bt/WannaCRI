@@ -2,7 +2,7 @@ from __future__ import annotations
 from enum import Enum, auto
 from typing import List
 
-from .tools import bytes_to_hex
+from wannacri.usm.tools import bytes_to_hex
 
 
 class ChunkType(Enum):

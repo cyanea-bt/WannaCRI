@@ -13,8 +13,8 @@ import ffmpeg
 from pythonjsonlogger import jsonlogger
 
 import wannacri
-from .codec import Sofdec2Codec
-from .usm import is_usm, Usm, Vp9, H264, HCA, OpMode, generate_keys
+from wannacri.codec import Sofdec2Codec
+from wannacri.usm import is_usm, Usm, Vp9, H264, HCA, OpMode, generate_keys
 
 
 def create_usm():

@@ -2,9 +2,9 @@ from __future__ import annotations
 import logging
 from typing import List, Union, Callable
 
-from .types import ChunkType, PayloadType
-from .page import UsmPage, pack_pages, get_pages
-from .tools import bytes_to_hex, is_payload_list_pages
+from wannacri.usm.types import ChunkType, PayloadType
+from wannacri.usm.page import UsmPage, pack_pages, get_pages
+from wannacri.usm.tools import bytes_to_hex, is_payload_list_pages
 
 
 class UsmChunk:

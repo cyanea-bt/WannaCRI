@@ -1,8 +1,8 @@
 from enum import Enum
 from typing import List, Optional
 
-from ..page import UsmPage
-from ..types import ElementType
+from wannacri.usm.page import UsmPage
+from wannacri.usm.types import ElementType
 
 
 def create_video_crid_page(

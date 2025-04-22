@@ -2,8 +2,8 @@ import struct
 import logging
 from typing import List, Any, Tuple, Dict, NamedTuple, Set, Optional, Union
 
-from .tools import bytes_to_hex
-from .types import ElementOccurrence, ElementType
+from wannacri.usm.tools import bytes_to_hex
+from wannacri.usm.types import ElementOccurrence, ElementType
 
 
 class Element(NamedTuple):

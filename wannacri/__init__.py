@@ -1,5 +1,5 @@
 from importlib.metadata import version, PackageNotFoundError
-from .wannacri import main
+from wannacri.wannacri import main
 
 try:
     __version__ = version("wannacri")

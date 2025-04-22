@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from tempfile import TemporaryFile
 from typing import List, Optional, Union, Tuple, Dict, Generator, IO, Callable
 
-from .tools import (
+from wannacri.usm.tools import (
     generate_keys,
     chunk_size_and_padding,
     bytes_to_hex,
@@ -20,10 +20,10 @@ from .tools import (
     slugify,
     pad_to_next_sector,
 )
-from .types import ChunkType, PayloadType, ElementType, OpMode
-from .page import UsmPage, keyframes_from_seek_pages
-from .chunk import UsmChunk
-from .media import GenericVideo, GenericAudio, UsmVideo, UsmAudio
+from wannacri.usm.types import ChunkType, PayloadType, ElementType, OpMode
+from wannacri.usm.page import UsmPage, keyframes_from_seek_pages
+from wannacri.usm.chunk import UsmChunk
+from wannacri.usm.media import GenericVideo, GenericAudio, UsmVideo, UsmAudio
 
 
 @dataclass

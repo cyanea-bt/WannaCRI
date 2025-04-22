@@ -3,6 +3,7 @@
 /build/
 /dist/
 /nuitka/
+/output/
 *.egg-info
 *.usm
 *.dat

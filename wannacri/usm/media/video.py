@@ -3,9 +3,9 @@ from typing import Generator, Tuple, Optional, List
 
 import ffmpeg
 
-from .tools import create_video_crid_page, create_video_header_page
-from .protocols import UsmVideo
-from ..page import UsmPage
+from wannacri.usm.media.tools import create_video_crid_page, create_video_header_page
+from wannacri.usm.media.protocols import UsmVideo
+from wannacri.usm.page import UsmPage
 
 
 class GenericVideo(UsmVideo):

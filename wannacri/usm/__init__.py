@@ -1,4 +1,4 @@
-from .tools import (
+from wannacri.usm.tools import (
     chunk_size_and_padding,
     generate_keys,
     encrypt_video_packet,
@@ -8,10 +8,11 @@ from .tools import (
     get_video_header_end_offset,
     is_usm,
 )
-from .page import UsmPage, get_pages, pack_pages
-from .usm import Usm
-from .chunk import UsmChunk
-from .media import (
+
+from wannacri.usm.page import UsmPage, get_pages, pack_pages
+from wannacri.usm.usm import Usm
+from wannacri.usm.chunk import UsmChunk
+from wannacri.usm.media import (
     UsmMedia,
     UsmVideo,
     UsmAudio,
@@ -21,7 +22,8 @@ from .media import (
     H264,
     HCA,
 )
-from .types import OpMode, ElementOccurrence, ElementType, PayloadType, ChunkType
+
+from wannacri.usm.types import OpMode, ElementOccurrence, ElementType, PayloadType, ChunkType
 
 import logging
 from logging import NullHandler

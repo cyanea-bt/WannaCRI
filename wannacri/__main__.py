@@ -1,3 +1,3 @@
-from .wannacri import main
+from wannacri.wannacri import main
 
 main()

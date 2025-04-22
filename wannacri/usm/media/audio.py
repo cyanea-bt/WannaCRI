@@ -2,10 +2,10 @@ import os.path
 import typing
 from typing import Generator, Optional, List, Any
 import struct
-from .protocols import UsmAudio
-from ..page import UsmPage
+from wannacri.usm.media.protocols import UsmAudio
+from wannacri.usm.page import UsmPage
 from collections import OrderedDict
-from .tools import create_audio_header_page, create_audio_crid_page, AUDIO_CODEC
+from wannacri.usm.media.tools import create_audio_header_page, create_audio_crid_page, AUDIO_CODEC
 from pathlib import Path
 import math
 
