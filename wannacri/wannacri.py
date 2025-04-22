@@ -1,5 +1,6 @@
 import logging
 import os
+import sys
 import argparse
 import pathlib
 import platform
@@ -17,15 +18,8 @@ from wannacri.codec import Sofdec2Codec
 from wannacri.usm import is_usm, Usm, Vp9, H264, HCA, OpMode, generate_keys
 
 
-def create_usm():
-    parser = argparse.ArgumentParser("WannaCRI Create USM", allow_abbrev=False)
-    parser.add_argument(
-        "operation",
-        metavar="operation",
-        type=str,
-        choices=OP_LIST,
-        help="Specify operation.",
-    )
+def create_usm(cmdProg, remArgs):
+    parser = argparse.ArgumentParser(prog=cmdProg, allow_abbrev=False)
     parser.add_argument(
         "input",
         metavar="input file path",
@@ -63,7 +57,7 @@ def create_usm():
     parser.add_argument(
         "-k", "--key", type=key, default=None, help="Encryption key for encrypted USMs."
     )
-    args = parser.parse_args()
+    args = parser.parse_args(args=remArgs)
 
     ffprobe_path = find_ffprobe(args.ffprobe)
 
@@ -92,17 +86,10 @@ def create_usm():
     print("Done creating USM file.")
 
 
-def extract_usm():
+def extract_usm(cmdProg, remArgs):
     """One of the main functions in the command-line program. Extracts a USM or extracts
     multiple USMs given a path as input."""
-    parser = argparse.ArgumentParser("WannaCRI Extract USM", allow_abbrev=False)
-    parser.add_argument(
-        "operation",
-        metavar="operation",
-        type=str,
-        choices=OP_LIST,
-        help="Specify operation.",
-    )
+    parser = argparse.ArgumentParser(prog=cmdProg, allow_abbrev=False)
     parser.add_argument(
         "input",
         metavar="input file/folder",
@@ -134,7 +121,7 @@ def extract_usm():
         default="./output",
         help="Output path. Defaults to a folder named output in CWD.",
     )
-    args = parser.parse_args()
+    args = parser.parse_args(args=remArgs)
 
     usmfiles = find_usm(args.input)
 
@@ -158,17 +145,10 @@ def extract_usm():
             print("DONE")
 
 
-def probe_usm():
+def probe_usm(cmdProg, remArgs):
     """One of the main functions in the command-line program. Probes a USM or finds
     multiple USMs and probes them when given a path as input."""
-    parser = argparse.ArgumentParser("WannaCRI Probe USM", allow_abbrev=False)
-    parser.add_argument(
-        "operation",
-        metavar="operation",
-        type=str,
-        choices=OP_LIST,
-        help="Specify operation.",
-    )
+    parser = argparse.ArgumentParser(prog=cmdProg, allow_abbrev=False)
     parser.add_argument(
         "input",
         metavar="input file/folder",
@@ -195,7 +175,7 @@ def probe_usm():
         default=".",
         help="Path to ffprobe executable or directory. Defaults to CWD.",
     )
-    args = parser.parse_args()
+    args = parser.parse_args(args=remArgs)
 
     usmfiles = find_usm(args.input)
 
@@ -317,15 +297,8 @@ def probe_usm():
     print(f'Probe complete. All logs are stored in "{args.output}" folder')
 
 
-def encrypt_usm():
-    parser = argparse.ArgumentParser("WannaCRI Encrypt USM/s", allow_abbrev=False)
-    parser.add_argument(
-        "operation",
-        metavar="operation",
-        type=str,
-        choices=OP_LIST,
-        help="Specify operation.",
-    )
+def encrypt_usm(cmdProg, remArgs):
+    parser = argparse.ArgumentParser(prog=cmdProg, allow_abbrev=False)
     parser.add_argument(
         "input",
         metavar="input file path",
@@ -349,7 +322,7 @@ def encrypt_usm():
         default=None,
         help="Output path. Defaults to the same place as input.",
     )
-    args = parser.parse_args()
+    args = parser.parse_args(args=remArgs)
 
     outdir = dir_or_parent_dir(args.input) if args.output is None else pathlib.Path(args.output)
     usmfiles = find_usm(args.input)
@@ -368,18 +341,20 @@ OP_LIST = list(OP_DICT.keys())
 
 
 def main():
-    parser = argparse.ArgumentParser("WannaCRI command line", allow_abbrev=False)
+    parser = argparse.ArgumentParser(allow_abbrev=False, add_help=False)
     parser.add_argument(
         "operation",
-        metavar="operation",
         type=str,
         choices=OP_LIST,
-        help="Specify operation",
+        help="Specify operation.",
     )
-    args, _ = parser.parse_known_args()
-    print(f"WannaCRI {wannacri.__version__}")
-
-    OP_DICT[args.operation]()
+    if len(sys.argv) < 2 or sys.argv[1] == "-h" or sys.argv[1] == "--help":
+        parser.print_help()
+        sys.exit(0)
+    else:
+        args, remArgs = parser.parse_known_args()
+        print(f"WannaCRI {wannacri.__version__}")
+        OP_DICT[args.operation](parser.prog + " " + args.operation, remArgs)        
 
 
 def find_usm(directory: str) -> List[str]:

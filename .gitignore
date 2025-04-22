@@ -4,6 +4,7 @@
 /dist/
 /nuitka/
 /output/
+/usmlogs/
 *.egg-info
 *.usm
 *.dat
